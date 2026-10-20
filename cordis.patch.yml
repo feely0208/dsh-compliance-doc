@@ -1,0 +1,4 @@
+# @deepwhale-cn/dsh-compliance-doc 的组合层
+- insert:
+    - id: compliance-doc
+      name: '@deepwhale-cn/dsh-compliance-doc'

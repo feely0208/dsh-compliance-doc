@@ -1,0 +1,12 @@
+{
+  "id": "FAKE-B-DEMO",
+  "title": "测试用假规则条目",
+  "severity": "low",
+  "source": "测试用假规则（fixtures only），不引用真实法条；用于验证 compliance-doc 自带的规则源发现器。",
+  "advice": "这条规则只存在于测试样本里，用于断言 discoverRuleSources 能找到插件并注入 _plugin 短名。",
+  "check": {
+    "type": "file-pattern",
+    "pattern": "FAKE_B_PATTERN",
+    "exts": [".txt"]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "generatedAt": "2026-10-19T09:30:00.000Z",
+  "stats": {
+    "root": "/demo/project",
+    "scannedFiles": 34,
+    "skippedCount": 2,
+    "rulesRun": 12,
+    "rulesTotal": 12,
+    "notApplicable": ["DEMO-NOT-APPLICABLE"],
+    "findings": 3,
+    "bySeverity": { "high": 1, "medium": 1, "low": 1 }
+  },
+  "findings": [
+    {
+      "ruleId": "DEMO-KEY-PLAIN",
+      "title": "配置文件里出现疑似明文密钥",
+      "severity": "high",
+      "source": "《网络安全法》第二十一条 —— 要求采取技术措施保障网络安全，防止数据泄露；对照判据：配置文件不得出现明文凭据。",
+      "advice": "把该值挪到环境变量或密钥管理服务，轮换已暴露的密钥，并检查提交历史里是否还有旧值。",
+      "file": "config/app.json",
+      "line": 8
+    },
+    {
+      "ruleId": "DEMO-LOG-RETENTION",
+      "title": "日志保留策略天数过短，且未写清理责任",
+      "severity": "medium",
+      "source": "《个人信息保护法》第十九条 —— 保存期限应当为实现处理目的所必要的最短时间；对照判据：日志保留策略需明确天数与清理责任人。",
+      "advice": "在运维文档里写明保留天数、清理周期和责任人，并让配置与文档保持一致。",
+      "file": "docs/ops.md",
+      "line": 2
+    },
+    {
+      "ruleId": "DEMO-README-MISSING",
+      "title": "README 未说明安全联系人与漏洞上报渠道",
+      "severity": "low",
+      "source": "最佳实践 —— 项目应在 README 中提供安全联系人/漏洞上报方式，便于外部研究者报告问题。",
+      "advice": "在 README 增加 Security 小节，写清联系人邮箱、响应时限与漏洞披露流程。",
+      "file": "README.md",
+      "line": 0
+    }
+  ],
+  "disclaimer": "本报告由本地静态检查生成，只用于提示确认。"
+}

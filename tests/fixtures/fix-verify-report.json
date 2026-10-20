@@ -1,0 +1,51 @@
+{
+  "tool": "dsh-fix-verify",
+  "version": "0.1.0",
+  "generatedAt": "2026-10-20T03:00:00.000Z",
+  "before": { "root": "/demo/before", "stats": { "scannedFiles": 40 } },
+  "after": { "root": "/demo/after", "stats": { "scannedFiles": 41, "skippedCount": 2 } },
+  "rules": {
+    "sources": [
+      { "name": "dsh-fake-a", "short": "fake-a", "dir": "/demo/plugins/dsh-fake-a", "count": 2 },
+      { "name": "dsh-fake-b", "short": "fake-b", "dir": "/demo/plugins/dsh-fake-b", "count": 1 }
+    ],
+    "total": 3
+  },
+  "summary": { "fixed": 1, "remaining": 1, "regressed": 1, "newFiles": 1, "beforeFindings": 2, "afterFindings": 2 },
+  "fixed": [
+    {
+      "ruleId": "DEMO-KEY-PLAIN",
+      "title": "配置文件里出现疑似明文密钥",
+      "severity": "high",
+      "source": "《网络安全法》第二十一条 —— 要求采取技术措施保障网络安全，防止数据泄露；对照判据：配置文件不得出现明文凭据。",
+      "advice": "把该值挪到环境变量或密钥管理服务，轮换已暴露的密钥。",
+      "file": "config/app.json",
+      "beforeLine": 8,
+      "afterLine": null
+    }
+  ],
+  "remaining": [
+    {
+      "ruleId": "DEMO-LOG-RETENTION",
+      "title": "日志保留策略天数过短，且未写清理责任",
+      "severity": "medium",
+      "source": "《个人信息保护法》第十九条 —— 保存期限应当为实现处理目的所必要的最短时间；对照判据：日志保留策略需明确天数与清理责任人。",
+      "advice": "在运维文档里写明保留天数、清理周期和责任人。",
+      "file": "docs/ops.md",
+      "beforeLine": 2,
+      "afterLine": 3
+    }
+  ],
+  "regressed": [
+    {
+      "ruleId": "DEMO-CONSOLE",
+      "title": "代码里留下调试日志",
+      "severity": "low",
+      "source": "最佳实践 —— 发布前应清理调试日志，避免输出内部信息。",
+      "advice": "清掉调试日志，或改用带级别的日志库。",
+      "file": "src/app.js",
+      "beforeLine": null,
+      "afterLine": 5
+    }
+  ]
+}

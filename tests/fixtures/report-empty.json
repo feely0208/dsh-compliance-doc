@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-10-19T10:00:00.000Z",
+  "stats": {
+    "root": "/demo/clean-project",
+    "scannedFiles": 34,
+    "skippedCount": 1,
+    "rulesRun": 12,
+    "rulesTotal": 12,
+    "notApplicable": [],
+    "findings": 0,
+    "bySeverity": {}
+  },
+  "findings": []
+}
