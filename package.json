@@ -35,7 +35,7 @@
     "./package.json": "./package.json"
   },
   "bin": {
-    "dsh-compliance-doc": "./bin/cli.mjs"
+    "dsh-compliance-doc": "bin/cli.mjs"
   },
   "engines": {
     "dsh": ">=0.1.0-rc.6 <0.3.0",
