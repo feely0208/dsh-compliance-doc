@@ -1,5 +1,7 @@
 # @deepwhale-cn/dsh-compliance-doc
 
+[![dshfind 收录](https://dshfind.com/api/badge/feely0208/dsh-compliance-doc?lang=zh)](https://dshfind.com/zh/plugins/feely0208/dsh-compliance-doc)
+
 [![Listed on dsh-plugin.org](https://dsh-plugin.org/badges/listed.svg)](https://dsh-plugin.org/zh/plugins/feely0208/dsh-compliance-doc)
 
 **检查结果别只躺在终端里 —— 自查表、整改说明、带边界声明的合规证明，一次生成三份能直接交出去的文档。**
