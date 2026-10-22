@@ -28,7 +28,7 @@ OUT1="$TMP/out1"
 node "$CLI" --input tests/fixtures/report.json --out "$OUT1" \
   --org "测试科技有限公司" --date "2026-01-02" >"$TMP/o1" 2>&1
 E1=$?
-[ "$E1" = "0" ] && ok "正常生成 exit 0（实际 $E1）" || bad "应 exit 0，实际 $E1"
+[ "$E1" = "0" ] && ok "正常生成 exit 0（实际 ${E1}）" || bad "应 exit 0，实际 $E1"
 for f in 自查表.csv 整改说明.md 合规证明.md; do
   [ -s "$OUT1/$f" ] && ok "生成非空 $f" || bad "缺少 $f"
 done
@@ -51,7 +51,7 @@ PY
 
 # 整改说明：规定的章节与逐条建议
 for kw in "背景" "检查范围与方法" "发现的问题与整改建议" "整改建议" "复核方式" "不构成合规结论"; do
-  grep -q "$kw" "$OUT1/整改说明.md" && ok "整改说明含「$kw」" || bad "整改说明缺「$kw」"
+  grep -q "$kw" "$OUT1/整改说明.md" && ok "整改说明含「${kw}」" || bad "整改说明缺「${kw}」"
 done
 for rid in DEMO-KEY-PLAIN DEMO-LOG-RETENTION DEMO-README-MISSING; do
   grep -q "$rid" "$OUT1/整改说明.md" && ok "整改说明逐条列出 $rid" || bad "整改说明缺 $rid"
@@ -61,7 +61,7 @@ grep -q "2026-01-02" "$OUT1/整改说明.md" && ok "--date 写入整改说明" |
 
 # 合规证明：范围 / 规则条数 / 依据清单（去重） / 结论措辞
 for kw in "检查范围" "检查方法与规则条数" "依据清单" "检查结果" "结论措辞" "不构成合规结论"; do
-  grep -q "$kw" "$OUT1/合规证明.md" && ok "合规证明含「$kw」" || bad "合规证明缺「$kw」"
+  grep -q "$kw" "$OUT1/合规证明.md" && ok "合规证明含「${kw}」" || bad "合规证明缺「${kw}」"
 done
 grep -q "运行规则：12 条" "$OUT1/合规证明.md" && ok "合规证明写明规则条数 12" || bad "规则条数缺失"
 grep -q "扫描文件数：34" "$OUT1/合规证明.md" && ok "合规证明写明扫描文件数 34" || bad "扫描文件数缺失"
@@ -80,7 +80,7 @@ for f in 自查表.csv 整改说明.md 合规证明.md; do
 done
 HIT=0
 for w in "已合规" "保证通过" "绝对合规" "通过等保"; do
-  grep -q "$w" "$OUT1"/* 2>/dev/null && { bad "出现违禁措辞「$w」"; HIT=1; }
+  grep -q "$w" "$OUT1"/* 2>/dev/null && { bad "出现违禁措辞「${w}」"; HIT=1; }
 done
 [ "$HIT" = "0" ] && ok "三份文件无「已合规 / 保证通过」类措辞"
 
