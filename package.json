@@ -1,6 +1,6 @@
 {
   "name": "@deepwhale-cn/dsh-compliance-doc",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "一份能交出去的自查表、整改说明和合规证明",
   "type": "module",
   "license": "MIT",
