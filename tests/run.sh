@@ -158,6 +158,27 @@ console.log('ok');
 " >"$TMP/discover" 2>&1
 [ "$?" = "0" ] && ok "discover 发现 fake-b 并注入 _plugin=fake-b" || bad "discover 工作异常：$(cat "$TMP/discover" | head -3)"
 
+# ── 7) 面板后端（v0.2.0 加的 lib/run.mjs，与 CLI 共用 docs.mjs）─────
+echo ""; echo "  【7】面板后端 runPanel()"
+node --input-type=module -e "
+import { runPanel } from '$ROOT/lib/run.mjs';
+const r = runPanel({ input: '$ROOT/tests/fixtures/report.json', out: '$TMP/panel', profile: '等保三级', org: '测试科技有限公司', date: '2026-10-29' });
+if (!r.ok) { console.error('面板后端失败', r.text); process.exit(1); }
+if (r.outputs.files.length !== 3) { console.error('产物数量不对', r.outputs.files); process.exit(1); }
+const names = r.outputs.files.map((f) => f.name).sort().join(',');
+if (names !== ['合规证明.md','整改说明.md','自查表.csv'].sort().join(',')) { console.error('产物名不对', names); process.exit(1); }
+if (!r.text.includes('不构成合规结论')) { console.error('缺声明'); process.exit(1); }
+" >"$TMP/panel.log" 2>&1
+[ "$?" = "0" ] && ok "面板后端生成三份文件并带声明" || bad "面板后端异常：$(head -3 "$TMP/panel.log")"
+
+node --input-type=module -e "
+import { runPanel } from '$ROOT/lib/run.mjs';
+const a = runPanel({ input: '', out: '' });
+const b = runPanel({ input: '$ROOT/tests/fixtures/malformed.json', out: '$TMP/px' });
+if (a.ok || b.ok) { console.error('坏输入未报错', a.ok, b.ok); process.exit(1); }
+" >"$TMP/panel2.log" 2>&1
+[ "$?" = "0" ] && ok "面板后端坏输入优雅报错（不抛异常/不白屏）" || bad "面板后端坏输入处理异常：$(head -3 "$TMP/panel2.log")"
+
 echo ""
 echo "  ────────────────────────────────────────────────"
 echo "  通过 $PASS · 失败 $FAIL"; echo ""

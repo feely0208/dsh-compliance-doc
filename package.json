@@ -1,6 +1,6 @@
 {
   "name": "@deepwhale-cn/dsh-compliance-doc",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "一份能交出去的自查表、整改说明和合规证明",
   "type": "module",
   "license": "MIT",
@@ -31,7 +31,9 @@
   "main": "./lib/index.js",
   "exports": {
     ".": "./lib/index.js",
+    "./api": "./lib/api.js",
     "./discover": "./lib/discover.mjs",
+    "./client": "./lib/client.js",
     "./package.json": "./package.json"
   },
   "bin": {
@@ -44,6 +46,13 @@
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime"
+      ],
+      "platform": "web",
+      "immediately": true
     }
   },
   "dependencies": {
@@ -59,5 +68,6 @@
   "homepage": "https://www.deepwhale.org.cn/skills.html",
   "bugs": {
     "url": "https://github.com/feely0208/dsh-compliance-doc/issues"
-  }
+  },
+  "author": "温州深鲸智能科技有限公司 <contact@deepwhale.org.cn>"
 }

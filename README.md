@@ -42,6 +42,12 @@ dsh-compliance-doc                 = 把上面两步的结果变成可交付文�
 
 ## 用法
 
+### 面板（v0.2.0 起已带面板）
+
+侧栏「深鲸合规文档」：选报告 JSON、填输出目录（可填单位名称 / 检查日期 / 文档档次）→ 点「生成三份文档」→ 面板显示生成了哪三个文件及其绝对路径。面板走宿主 `/dsh-compliance-doc/api/run`，后端未注册时显示错误提示，不白屏。
+
+### CLI
+
 ```bash
 # 从一个普通扫描报告生成三份文档
 dsh-compliance-doc --input report.json --out ./交付文档
